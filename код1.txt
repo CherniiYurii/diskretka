@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	
+	int x, y, z;
+	bool a, b, c, d;
+	cout << "Please enter x, y, z accordingly " << endl;
+	cin >> x >> y >> z;
+	if (x != 0 || x != 1 || y != 0 || y != 1 || z != 1 || z != 0)
+	{
+		cout << "Error!" << endl << "Only 1 or 0";
+	}
+	a = (y && z);
+	b = (x && a);
+	c = (x || y || z);
+	d = (b |= c);
+	cout << "What do you want?" << endl << "1 is equal to a = (y && z), 2 is equal to b = (x && a),3 is equal to c = (x || y || z), 4 is equal to d = (b |= c). " << endl << "Please choose: ";
+	int k;
+	cin >> k;
+	switch (k)
+	{
+	case 1:cout << a;break;
+	case 2:cout << b;break;
+	case 3:cout << c;break;
+	case 4:cout << d;break;
+	default:cout << "You should enter 1-4";
+	}
+	return 0;
+}
