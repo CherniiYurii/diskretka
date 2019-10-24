@@ -1,0 +1,108 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	setlocale(LC_CTYPE, "ukr");
+	int rows, cols;
+	cout << "Введіть розмір множини A: ";
+	cin >> rows;
+	cout << "Введіть розмір множини B: ";
+	cin >> cols;
+	if (cin.fail()) { cout << "Введіть число(ціле)!!!"; }
+	else {
+		int* a = new int[rows];
+		int* b = new int[cols];
+		int** c = new int* [rows];
+		for (int i = 0; i < rows; i++)
+		{
+			c[i] = new int[cols];
+		}
+		cout << "Введіть числа множини A: ";
+		for (int i = 0; i < rows; i++)
+		{
+			cin >> a[i];
+		}
+		cout << "Введіть числа множини B: ";
+		for (int i = 0; i < cols; i++)
+		{
+			cin >> b[i];
+		}
+		for (int i = 0; i < rows; i++)
+		{
+			for (int q = 0; q < cols; q++)
+			{
+				if (a[i] + b[q] + 1 > 3)
+				{
+					c[i][q] = 1;
+				}
+				else { c[i][q] = 0; }
+				cout << c[i][q] << " ";
+				if (c[i][q] == c[i][cols - 1])
+					cout << endl;
+			}
+		}
+		int k = 0, l = 0;
+		bool j = true;
+		if (cols == rows)
+		{
+			for (int i = 0; i < cols; i++)
+			{
+				if (c[i][i] == 1)
+					k++;
+			}
+			if (k == rows)
+			{
+				cout << "Рефлексивна" << endl;
+			}
+			else { cout << "Антирефлексивне" << endl; }
+			int t = 0;
+			for (int i = 0; i < rows; i++)
+			{
+				for (int h = 0; h < cols; h++)
+				{
+					if (i != h)
+					{
+						if (c[i][h] == c[h][i])
+						{
+							j = true;
+						}
+							else j = false;
+					}
+					if(j==false) { 
+					t = 1;
+					}
+				}
+
+			}
+			if (t == 1) { cout << "Антисиметрична" << endl; }
+			if (t == 0)
+			{
+
+				cout << "Симетрична" << endl;
+			}
+			
+
+			int y = 0;
+			for (int i = 0; i < rows; i++)
+			{
+				for (int q = 0; q < rows; q++)
+				{
+					for (int p = 0; p < rows; p++)
+					{
+						if (q != i != p)
+						{
+							if (c[q][i] == c[i][p] == 1 && c[q][p] == 1)
+								y++;
+						}
+					}
+
+				}
+
+			}
+			if (y >= 1)
+				cout << "Транзитивна" << endl;
+			else cout << "Антитранзитивна" << endl;
+		}
+		else cout << "Не можливо визначити тип!!!";
+	}
+}
